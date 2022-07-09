@@ -2,7 +2,7 @@
 pragma solidity ^0.8.9;
 
 
-import "erc721a/contracts/ERC721A.sol";
+import "erc721a/contracts/ERC721A.sol"; //REFER TO AZUKI ERC721A
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
@@ -16,8 +16,8 @@ contract NewStandard is ERC721A, ReentrancyGuard, Delegated {
     uint256 public constant MAX_SUPPLY = 9999;
 
     // ======== PRICE ========
-    uint256 public allowListPrice = 0.5 ether;
-    uint256 public publicSalePrice = 0.92 ether;
+    uint256 public allowListPrice = 0.35 ether;
+    uint256 public publicSalePrice = 0.70 ether;
 
     // ======== SALE STATUS ========
     uint8 public currentMintBatch;
@@ -36,6 +36,7 @@ contract NewStandard is ERC721A, ReentrancyGuard, Delegated {
     constructor() ERC721A("STANDARD OFFICIAL - FU** BOYS", "FU**BOYS") {}
 
     // ======== MINTING ========
+    //=======MINT FIRST BATCH =====
     function mintBatch1(bytes32[] calldata _proof)
         external
         payable
@@ -55,7 +56,8 @@ contract NewStandard is ERC721A, ReentrancyGuard, Delegated {
         );
         _safeMint(msg.sender, 1);
     }
-
+  
+   //=======MINT SECOND BATCH =====
     function mintBatch2(bytes32[] calldata _proof)
         external
         payable
@@ -75,7 +77,8 @@ contract NewStandard is ERC721A, ReentrancyGuard, Delegated {
         );
         _safeMint(msg.sender, 1);
     }
-
+     //=======MINT THIRD BATCH =====
+     
     function mintBatch3() external payable callerIsUser {
         require(currentMintBatch == 3, "Incorrect mint batch");
         require(totalSupply() < MAX_SUPPLY, "Max supply reached");
